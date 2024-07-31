@@ -1,0 +1,196 @@
+/*menu de mon site */
+.menutop {
+    min-width: 100%;
+     height: max-content;
+     background-color: blue;
+     position: fixed;
+     top: 0; /* Placer l'élément en bas de la fenêtre */
+     left: 50%;
+     transform: translate(-50%);
+     z-index: 1; /* Valeur inférieure par rapport à .sidenav, mais supérieure à d'autres éléments */
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding-left: 10px;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     color: blue;
+   }
+   
+   .topbtn {
+     display: block;
+     flex-wrap: wrap;
+     align-content: center;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     background: white;
+     padding: 2px;
+     height: 30px;
+     width: 30px;
+   }
+   .fa-bars{
+   text-align: center;
+   }
+   #close{
+   display: none;
+   text-align: center;
+   }
+   
+   .topbtn i {
+     cursor: pointer;
+     font-size: 14px;
+     margin-right: 1px;
+   }
+   .rc{
+   position: absolute;
+   right: 0;
+   margin-right: 5px;
+   width: fit-content;
+   font-size: 12px;
+   }
+   
+   .topbtn span {
+     font-size: 12px;
+   }
+   .rc span:nth-child(4){
+   color: #f20b0b;
+   }
+   
+   .menu {
+   margin-top: 45px;
+     position: fixed;
+     top: 1px;
+     left: 340px; /* Initially off-screen */
+     width: 250px;
+     height: 100%;
+     z-index: 101;
+     background-color: #111;
+     overflow-x: hidden;
+     transition: opacity 0.6s ease-out;
+     opacity: 0;
+     padding-top: 6px;
+     color: white;
+     display: none
+   
+   }
+   
+   
+   .menu.open {
+     opacity: 1; /* When menu is open, set opacity to fully opaque */
+   }
+   .art-myuser{
+   height: 100%;
+   min-width: 100%;
+   background-color: white;
+   color: black;
+   margin-top: -17px;
+   padding: 10px;
+   }
+   .art-myuser img{
+   display: block;
+   width: 50px;
+   height: 50px;
+   margin:10px auto;
+   border-radius: 50%;
+   border: 2px solid blue;
+   }
+   .art-myuser p{
+   margin: 2px;
+   text-align: center;
+   }
+   
+   .menu h1 {
+     font-size: 20px;
+   }
+   .sideItem{
+   border: 1px solid white;
+   }
+   .sideItem p{
+   width: 70%;
+   border: 1px white solid;
+   text-align: left;
+   cursor: pointer;
+   }
+   
+   .sideItem p a {
+     margin: 5px;
+     color: white;
+     text-align: left;
+   }
+
+
+   /* Styles pour le menu */
+
+.menu-toggle {
+    position: relative;
+    top: 20px;
+    right: 20px;
+    display: none; /* Masqué par défaut */
+    cursor: pointer;
+    z-index: 1000;
+    background: none;
+    border: none;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 4px;
+    background-color: #fff;
+    margin: 6px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Lorsque le menu est ouvert */
+.menu-open .menu-toggle span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Le menu est caché en dehors de l'écran à gauche */
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    background: #333;
+    color: #fff;
+    padding: 80px 20px;
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.menu-open .menu {
+    left: 0; /* Le menu glisse depuis la gauche vers la position 0 */
+}
+
+.menu a {
+    display: block;
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    
+    .menu-toggle {
+        display: block; /* Affiche le bouton de menu sur les appareils mobiles */
+    }
+
+   
+}
+

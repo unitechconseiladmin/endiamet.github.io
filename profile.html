@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <!-- Balises méta pour la description -->
+     <meta name="description" content="Unitech Conseil vous accompagnera dans la gestion de votre vie amoureuse et vous enseignera l'informatique sur Android avec un jeu de documents à télécharger gratuitement. Découvrez des astuces pour améliorer votre vie, trouver l'amour et vous initier à l'informatique.">
+
+     <!-- Balises méta pour les moteurs de recherche -->
+     <meta name="keywords" content="Amour, Informatique, Technologie, Formation, Astuces de vie, Téléchargement gratuit">
+     <meta name="author" content="Ruban Joseph">
+ 
+     <!-- Balises méta pour les réseaux sociaux -->
+     <meta property="og:title" content="Découvrez des astuces pour améliorer votre vie, trouver l'amour et s'initier à l'informatique">
+     <meta property="og:description" content="Unitech Conseil vous accompagnera dans la gestion de votre vie amoureuse et vous enseignera l'informatique sur Android avec un jeu de documents à télécharger gratuitement. Découvrez des astuces pour améliorer votre vie, trouver l'amour et vous initier à l'informatique.">
+     <meta property="og:image" content="https://drive.google.com/thumbnail?id=1-GpXHFa2IYFEBoO9BbtOT4F1uBlDxk3c">
+     <meta property="og:url" content="https://unitechconseil.online">
+     <meta name="google-adsense-account" content="ca-pub-7979799450178267">
+     <!-- Balise du titre de la page -->
+     <title>Découvrez des astuces pour améliorer votre vie, trouver l'amour et s'initier à l'informatique | Unitech Conseil</title>
+ 
+     <!-- Favicon (Icône de l'onglet du navigateur) -->
+     <link rel="icon" href="https://drive.google.com/thumbnail?id=1gIl6kFHNIVWPKRyXkneCNJ_LX9UqdSuH" type="image/x-icon">
+     <link rel="shortcut icon" href="https://drive.google.com/thumbnail?id=1gIl6kFHNIVWPKRyXkneCNJ_LX9UqdSuH" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-zruApR6S1gbL0OeSqjrFYseztvotdAyMBwK9aaVg6AeY3I4Wl9PrtQ/kOcvtO1PnwYFqxu3MNSXfs3lEpxdumQ==" crossorigin="anonymous" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7979799450178267"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/config.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/profile.css">
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1JT2BCD356"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1JT2BCD356');
+</script>
+</head>
+<body>
+
+    <section class="bodyMobile">
+            <!--menu, splash screen/Load-->
+        <section class="config">
+            <div class="custom-dialog" id="customDialog">
+                <div class="dialog-content">
+                    <span class="close-button" onclick="closeDialog()">&times;</span>
+                    <h2 class="alertTitle">Unitech Conseil</h2>
+                    <p class="alertp">Vous etes un ami de Unitech conseil</p>
+                    <button id="alertbtn">Connectez-vous</button>
+                </div>
+            </div>
+
+            <div id="mySidenav" class="sidenav">
+                <div id="menu" style="display: block;">
+                    <div id="user-details"></div>
+                </div>
+            </div>
+            <p id="email" style="display: none;"></p>
+          
+
+            <div id="splash-screen">
+                <img src="/images/load.gif" alt="Splash Image">
+            </div>
+        </section>
+        <!--Fin menu, splash screen/Load-->
+       
+   
+        <div class="container">
+            <div class="usersdetails" id="userDetails"></div>
+            <div id="profileDetails">
+                <header>
+                    <section>
+                        <h3>Vendre vos Rc</h3>
+                        <p>Utiliser l'email pour ventre vos Rc facilement</p>
+                        <p id="converRc">1Rc = 0.005 HTG</p>
+                        <div class="input">
+                            <input type="email" id="emailRc" placeholder="entrez l'email client">
+                           
+                           
+                        </div>
+                        <div class="input">
+                            <input type="number" onchange="changeInput()" id="montanRc">
+                        </div>
+                        <button onclick="sendRc()">Envoyer du Rc</button>
+                    </section>
+                </header>
+    
+                <h2>Profile d'Utilisateur</h2>
+                <div id="profile-info">
+                    <div>
+                        <img id="profile-img" src="default-profile-pic.jpg" alt="Profile Picture">
+                        <p><span id="pname"></span></p>
+                        <p><span id="pemail"></span></p>
+                        <p><span id="pphone"></span></p>
+                    </div>
+                    <div>
+                        <p>
+                            "Gagner de l'argent grâce au référencement 
+                            ! Dès que vous invitez un ami à s'inscrire 
+                            sur le site, vous obtiendrez 10 € par référencement. 
+                            N'hésitez pas à inviter vos amis !"
+                        </p>
+                        <button>invitez vos amis</button>
+                    </div>
+                    <div>
+                        <p><strong>Rc:</strong> <span id="prc">00</span></p>
+                        <p><strong>Votre Code :</strong> <span id="pref">0</span></p>
+                        <p><strong>Description:</strong></p>
+                        <p id="description"></p>
+                        <button onclick="editProfile()">Edit Profile</button>
+                    </div>
+                </div>
+                <div id="edit-profile" style="display: none;">
+                    <form id="profile-form">
+                        <label for="new-name">Name:</label>
+                        <input type="text" id="new-name" name="new-name">
+                        <label for="new-email">Email:</label>
+                        <input type="email" id="new-email" name="new-email">
+                        <label for="new-phone">Phone Number:</label>
+                        <input type="tel" id="new-phone" name="new-phone">
+                        <label for="new-description">Description:</label>
+                        <textarea id="new-description" name="new-description"></textarea>
+                        <button type="submit">Save</button>
+                        <button type="button" onclick="cancelEdit()">Cancel</button>
+                    </form>
+                </div>
+    
+                
+                <div class="bar">
+                    <h3 class="h3">Derniers documents publiés</h3><hr class="hr">
+                    <div id="livres"></div>
+                </div>
+            </div>
+
+        </div>
+       
+
+       <!-- Code de la bannière AdMob -->
+    <div id="div-gpt-ad-1234567890123" class="banner">
+        <script>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1234567890123'); });
+        </script>
+    </div>
+        <section>
+            <footer class="mobile-footer">
+            
+            </footer>
+        </section>
+    </section>
+
+</script>
+    <script src="https://apis.google.com/js/api.js" gapi_processed="true"></script>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+     <script src="js/asset.js" defer></script>
+     <script src="js/config.js" defer></script>
+     <script src="js/menuAndFooter.js" defer></script>
+     <script src="js/docs.js" defer></script>
+     <script src="js/profile.js" defer></script>
+     <script src="/js/home.js" defer></script>
+    
+   
+    
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const container = document.querySelector(".card");
+
+    let isMouseDown = false;
+
+    container.addEventListener("mousedown", function() {
+        isMouseDown = true;
+    });
+
+    container.addEventListener("mouseup", function() {
+        isMouseDown = false;
+    });
+
+    container.addEventListener("mousemove", function(e) {
+        if (isMouseDown) {
+            container.scrollBy({
+                top: e.movementY,
+                left: e.movementX,
+                behavior: "smooth"
+            });
+        }
+    });
+});
+
+
+    </script>
+
+</body>
+</html>

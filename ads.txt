@@ -1,0 +1,4 @@
+# Fichier ads.txt
+
+# Identifiant d'éditeur AdSense
+google.com, pub-7979799450178267, DIRECT, f08c47fec0942fa0

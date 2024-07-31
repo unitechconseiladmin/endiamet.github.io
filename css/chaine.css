@@ -1,0 +1,611 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+.alert{
+    width: 300px;
+}
+
+img{
+    width: 100%;
+}
+.headerchaine{
+    background-color: green;
+    padding: 10px;
+    margin: -10px 0px 0px 0px;
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+.headerchaine i{
+    margin-right: 5px;
+    background-color: white;
+    color: green;
+    padding: 3px;
+    border: 3px solid rgb(197, 194, 194);
+    border-radius: 8px;
+}
+
+.headerchaine ul{
+    width: max-content;
+    display: block;
+    margin: auto;
+    padding: 2px;
+    padding: 2px;
+    display: flex;
+}
+.headerchaine ul li{
+    padding: 2px 7px 2px 7px;
+    margin: 5px 2px 2px 2px;
+    list-style: none;
+    border:  1px solid white;
+}
+.headerchaine ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.headerchaine .add{
+    border: 2px solid white;
+    width: max-content;
+    display: block;
+    margin: auto;
+    padding: 5px;
+}
+.add i{
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    width: 50px;
+
+}
+
+.headerchaine .headerpartage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    margin: 10px auto;
+}
+.headerpartage span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 25px;
+    min-height: 25px;
+    border: #025e0a 2px solid;
+    padding: 5px;
+    margin: 5px 10px;
+    background-color: white;
+    cursor: pointer ;
+}
+.headerpartage .fa-whatsapp{
+    border: 0px;
+    font-size: 18px;
+    color: green;
+    font-weight: bolder;
+    background-color: #0057b300;
+}
+.headerpartage .fa-facebook{
+    border: 0px;
+    font-size: 18px;
+    color: rgb(5, 52, 155);
+    font-weight: bolder;
+    background-color: #0057b300;
+}
+
+.headerpartage .fa-twitter{
+    border: 0px;
+    font-size: 18px;
+    color: rgb(6, 136, 187);
+    font-weight: bolder;
+    background-color: #0057b300;
+}
+.barfiltre{
+    display: flex;
+}
+.greedCard{
+    overflow-x: auto;
+}
+.greedCard .mcard{
+    min-width: 100%;
+    display: flex;
+}
+.greedCard .mcard .cardItem{
+    min-width: 250px;
+}
+
+.card{
+    width: 99%;
+    position: relative;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    min-height: 100%;
+   
+}
+#chaine{
+    width: 99%;
+    position: relative;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    min-height: 100%;
+   
+}
+
+.card{
+    position: relative;
+    width: 99%;
+    margin: 2px 1px 5px 2px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(28, 85, 2);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.cardItem .img{
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    border: 0px;
+    
+}
+a{
+    text-decoration: none;
+    color: green;
+}
+
+.cardItem .img img{
+    width: 50px;
+    height: 50px;
+}
+.cardItem h3{
+    font-size: 18px;
+    color: green;
+    margin: 5px;
+}
+.cardItem h4{
+    color: orangered;
+    margin: 4px;
+
+}
+.cardItem .time{
+    color: red;
+    margin-top: 15px;
+}
+.cardItem p {
+    font-size: 14px;
+    margin: 3px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Nombre de lignes à afficher */
+    -webkit-box-orient: vertical;
+}
+.cardItem i{
+    font-size: 14px;
+    color: rgb(255, 81, 0);
+}
+
+.card .btnpartage{
+    display: flex;
+}
+.card .btnpartage span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3px;
+    margin: 5px 3px;
+    width: 17px;
+    height: 17px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.card .btnpartage span:hover{
+    zoom: 1.03;
+    color: white;
+    font-size: 14px;
+}
+.card .btnpartage span:active{
+    background-color: green;
+    color: white;
+    font-size: 14px;
+}
+
+.card .btnpartage .fa-whatsapp{
+    color: green;
+    border: none;
+}
+.card .btnpartage .fa-facebook{
+    color: rgb(24, 21, 218);
+}
+.card .btnpartage .fa-twitter{
+    color: rgb(7, 130, 179);
+}
+
+.card .barlike, .card .bardislike, .card .barcomment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border-bottom: 1px solid green;
+    height: max-content;
+}
+.card .barlike span, .card .bardislike span, .card .barcomment span{
+    font-size: 14px;
+    width: max-content;
+    height: max-content;
+    padding: 2px;
+    color: rgb(11, 66, 3);
+    border: 0px;
+
+}
+
+.card .btnpartage .lireLaSuite{
+    width: max-content;
+}
+.card .btncard{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card .btncard button{
+    font-size: 14px;
+    background: white;
+    color: green;
+    margin: 2px 5px 5px 5px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 0px rgba(8, 70, 6, 0.979);
+
+}
+.card .btncard button i{
+    margin-right: 5px;
+    background-color: white;
+    padding: 3px;
+    color: green;
+    border-radius: 25%;
+}
+.card .btncard a {
+    color: green;
+}
+.card .btncard span{
+    font-size: 14px;
+}
+
+
+
+
+
+/* Styles for comments section */
+.comments-list{
+    margin-top: 10px;
+}
+#comments-list{
+    border: 2px solid red;
+}
+.comment{
+    max-width: 98%;
+    margin: 10px auto;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+.comment h2{
+    color: green;
+    font-size: 16px;
+    margin: 5px;
+}
+.comment span{
+    font-size: 12px;
+}
+.comments-list p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.comment-form {
+    margin-top: 10px;
+    display: flex;
+}
+
+.comment-form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.comment-form button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.comment-form button:hover {
+    background-color: #218838;
+}
+
+/* Styles for like, dislike and comment bars */
+.barcomment, .barlike, .bardislike {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.barcomment i, .barlike i, .bardislike i {
+    margin-right: 5px;
+    color: green;
+}
+
+.barcomment button, .barlike button, .bardislike button {
+    background-color: #ffffff;
+    color: #0f0e0e;
+    border: none;
+    padding: 5px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+
+.barcomment button:hover, .barlike button:hover, .bardislike button:hover {
+    background-color: #0056b3;
+}
+
+
+.formulairechaine{
+    display: none;
+    background-color: rgb(239, 241, 241);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 19;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 10px;
+}
+.formulairechaine h3{
+    color: green;
+    text-align: center;
+    margin: 3px;
+}
+.formulairechaine h4{
+    color: rgb(231, 90, 8);
+    text-align: center;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+.formulairechaine .input{
+    display: block;
+}
+.formulairechaine .input div{
+    width: 100%;
+    display: block;
+    border: 1px solid green;
+    overflow: hidden;
+    margin: 5px auto;
+}
+.formulairechaine .input div input, .formulairechaine .input div select{
+    width: 100%;
+    padding: 6px;
+    padding-right: 20px;
+    
+}
+.formulairechaine .input div input:focus{
+    list-style: none;
+    border: 0px;
+    outline: none;
+}
+.formulairechiane .input .formBtn{
+    border: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.formulairechaine .input .formBtn button{
+    width: 100%;
+    margin: 5px;
+}
+.formulairechiane .input .formBtn button:nth-child(1){
+    background-color: green;
+    margin-right: 5px;
+}
+.formulairechiane .input .formBtn button:nth-child(2){
+    background-color: red;
+    width: max-content;
+}
+
+
+
+
+
+@media screen and (max-width: 500px){
+    body{
+        background: white;
+    }
+
+    .headerchaine{
+        background-color: green;
+        padding: 10px;
+        margin: -10px 0px 0px 0px;
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 4vw;
+    }
+    .headerchiane i{
+        margin-right: 5px;
+        background-color: white;
+        color: green;
+        padding: 3px;
+        border: 3px solid rgb(197, 194, 194);
+        border-radius: 8px;
+    }
+    
+    .headerchiane ul{
+        width: max-content;
+        display: block;
+        margin: auto;
+        padding: 2px;
+        padding: 2px;
+        display: flex;
+    }
+    .headerchiane ul li{
+        padding: 2px 7px 2px 7px;
+        margin: 5px 2px 2px 2px;
+        list-style: none;
+        border:  1px solid white;
+    }
+    .headerchiane ul li a{
+        text-decoration: none;
+        color: white;
+        font-size: 3vw;
+    }
+
+    .formulairechaine{
+        display: none;
+        background-color: rgb(239, 241, 241);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 19;
+        max-width: 97%;
+        height: auto;
+        padding: 10px;
+        border: 1px solid green;
+        border-radius: 10px;
+    }
+    
+    #chaine{
+        width: 99%;
+        display: block;
+       
+    }
+    
+    .card{
+        position: relative;
+        width: 99%;
+        margin: 2px 1px 5px 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgb(28, 85, 2);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
+    .cardItem .img{
+        display: flex;
+        align-items: center;
+        margin: 5px;
+        border: 0px;
+        
+    }
+    .cardItem .img{
+        width: 100%;
+    }
+    .cardItem .img img{
+        width: 50px;
+        height: 50px;
+    }
+    .cardItem h3{
+        font-size: 18px;
+        color: green;
+        margin: 5px;
+    }
+    .cardItem p {
+        font-size: 12px;
+        margin: 3px 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* Nombre de lignes à afficher */
+        -webkit-box-orient: vertical;
+    }
+    .cardItem i{
+        font-size: 14px;
+        color: rgb(9, 82, 2);
+    }
+    
+    .btnpartage{
+        display: flex;
+        align-items: center;
+    }
+    .btnpartage span{
+        display: block;
+        text-align: center;
+        padding: 3px;
+        margin: 5px 3px;
+        width: 17px;
+        height: 17px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .btnpartage span:hover{
+        zoom: 1.03;
+        color: white;
+        font-size: 14px;
+    }
+    .btnpartage span:active{
+        background-color: green;
+        color: white;
+        font-size: 14px;
+    }
+    
+    .btnpartage .fa-whatsapp{
+        color: green;
+    }
+    .btnpartage .fa-facebook{
+        color: rgb(24, 21, 218);
+    }
+    .btnpartage .fa-twitter{
+        color: rgb(7, 130, 179);
+    }
+    .btncard{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .btncard button{
+        font-size: 3vw;
+        background: white;
+        color: green;
+        margin: 2px 5px 5px 5px;
+        border-radius: 7px;
+        box-shadow: 0px 0px 5px 0px rgba(8, 70, 6, 0.979);
+    
+    }
+    .btncard button i{
+        margin-right: 5px;
+        background-color: white;
+        padding: 3px;
+        color: green;
+        border-radius: 25%;
+    }
+    .btncard span{
+        font-size: 3vw;
+    }
+    
+}

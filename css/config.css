@@ -1,0 +1,847 @@
+body {
+  background: linear-gradient(to bottom, #111111, #000000, #FFA500, #0000FF);
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-attachment: fixed;
+}
+
+.alert{
+  display: none;
+  background-color: rgb(2, 156, 245);
+  position: fixed;
+  max-width: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: max-content;
+  border: lime 2px solid;
+  z-index: 109;
+  -webkit-box-shadow: inset 8px 8px 60px -13px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 8px 8px 60px -13px rgba(0,0,0,0.75);
+  box-shadow: inset 8px 8px 60px -13px rgba(0,0,0,0.75);
+}
+#alertclose{
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+.alert h1{
+  text-align: center;
+  font-size: 18px;
+  margin-top: 50px;
+}
+.alert p{
+  text-align: center;
+  font-size: 14px;
+}
+
+
+/* Pour WebKit (Chrome, Safari, etc.) */
+body::-webkit-scrollbar {
+  width: 0px; /* Largeur de la barre de défilement */
+  height: 12px; /* Hauteur de la barre de défilement */
+}
+
+/* Pour les autres navigateurs */
+body {
+  scrollbar-width: 12px; /* Largeur de la barre de défilement */
+ 
+}
+#dialog{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: white;
+  border: 2px solid lime;
+  padding:10px;
+  width: 250px;
+  z-index: 9;
+}
+#dialog h1{
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+#dialog p{
+  font-size: 14px;
+  text-align: center;
+  color: white;
+}
+
+.pub{
+  width: 90%;
+  margin:10px auto;
+  overflow: hidden;
+}
+
+
+#download{
+  display:none;
+}
+button a{
+  text-decoration: none;
+  color: white;
+}
+
+button{
+  padding: 5px;
+  margin: 5px;
+  border:0px;
+  background: blue;
+  color:white;
+  cursor: pointer;
+  margin:auto;
+  display: block;
+}
+@media screen and (max-width: 600px){
+  #dialog{
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      background-color: black;
+      color: white;
+      border: 2px solid lime;
+      padding:10px;
+      width: 80%;
+      z-index: 9;
+  }
+}
+
+
+
+#lien, #stitreEs, #stitreEn,  #detailsEs, #detailsEn,  #descEs, #descEn{
+  display:none;
+}
+/* Styles pour le sélecteur de langue */
+.lang {
+  position: relative;
+  display: inline-block;
+  border: 1px solid orangered;
+}
+
+/* Styles pour le drapeau */
+.lang select {
+  appearance: none; /* Supprime le style par défaut */
+  padding: 1px 2px 2px 1px; /* Ajoute de l'espace pour le drapeau */
+  border: 0px;
+  border-radius: 0px; /* Bordure arrondie */
+  font-size: 12px; /* Taille de la police */
+  line-height: 1; /* Hauteur de ligne */
+  cursor: pointer; /* Curseur */
+  outline: none; /* Supprime la mise en évidence du focus */
+  background-repeat: no-repeat; /* Pas de répétition */
+  background-size: 24px; /* Taille du drapeau */
+  background-position: right 8px center; /* Position du drapeau */
+}
+.lang select:focus{
+  outline: none;
+}
+.lang span:nth-child(3){
+  color: rgba(0, 47, 255, 0.952);
+  font-size: 12px;
+  margin: 0px 5px 0px 5px;
+}
+
+/* Hover effect */
+.lang option:hover {
+  background-color: #f0f0f0; /* Couleur de fond au survol */
+}
+
+/* Sélectionné */
+.lang option:checked {
+  font-weight: bold; /* Texte en gras */
+}
+
+/* Styles pour afficher le drapeau sélectionné */
+.showflag {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+
+
+
+/* utilisateur prmier place*/
+.placement{
+  background-color: rgb(206, 206, 206);
+  margin-top: -10px;
+  padding: 3px;
+  padding-top: 5px;
+  -webkit-box-shadow: inset 0px 0px 18px -3px rgba(209,209,209,0.7);
+-moz-box-shadow: inset 0px 0px 18px -3px rgba(209,209,209,0.7);
+box-shadow: inset 0px 0px 18px -3px rgba(209,209,209,0.7);
+}
+.placement p{
+  text-align: center;
+  font-size: 14px;
+  margin: 3px;
+}
+.usersdetails {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  margin-top: 1px;
+  margin-bottom: 4px;
+  overflow-y: hidden;
+  overflow-x: auto; /* Ajout de défilement horizontal automatique */
+  white-space: nowrap; /* Empêche le retour à la ligne des éléments enfants */
+}
+
+.usersdetails .myusers {
+  width: 33%;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+}
+
+.usersdetails .img {
+  position: relative;
+  margin: auto;
+  display: block;
+  min-height: 50px;
+  min-width:100%;
+  overflow: hidden;
+}
+
+.usersdetails .img img {
+  margin: auto;
+  display: block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.usersdetails .img .place {
+  background-color: #0095f88c;
+  font-size: 12px;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.points{
+  font-size: 12px;
+}
+.points span:nth-child(1){
+  color: rgb(0, 140, 255);
+}
+
+.points span:nth-child(2){
+  color: rgb(255, 72, 0);
+}
+
+/* Style pour les étoiles */
+.stars {
+  font-size: 10px; /* Taille des étoiles */
+  color: orange; /* Couleur des étoiles */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ajouter des espaces entre les étoiles */
+.stars::after {
+  content: '\00a0\00a0\00a0\00a0\00a0'; /* Ajouter des espaces */
+}
+
+
+/* Style de la barre de défilement */
+.usersdetails::-webkit-scrollbar {
+  width: 1px; /* Largeur de la barre de défilement */
+  height: 5px; /* Hauteur de la barre de défilement */
+}
+
+/* Style de la poignée de défilement */
+.usersdetails::-webkit-scrollbar-thumb {
+  background-color: #4CAF50; /* Couleur de la poignée de défilement */
+  border-radius: 6px; /* Bordure arrondie de la poignée de défilement */
+}
+
+/* Optionnel : Style de la barre de défilement lorsqu'elle est survolée */
+.usersdetails::-webkit-scrollbar-thumb:hover {
+  background-color: #35a93c; /* Couleur de la poignée de défilement au survol */
+}
+
+/*fin de la place*/
+
+
+
+.bodyord{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 246);
+  color: white;
+  text-align: center;
+  display: none;
+}
+.bodyord div{
+  height: max-content;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+.bodyord h1{
+  margin:3px;
+}
+.bodyord p{
+  margin: 4px;
+}
+.bodyord h2{
+  font-size: 14px;
+}
+.bodyord ul{
+  padding: 2px;
+  margin: 2px;
+  list-style: none;
+  width: 100%;
+}
+.bodyord ul li{
+  text-align: left;
+  margin: 1px;
+  margin: 10px;
+  border: 1px solid;
+  padding: 10px;
+}
+
+
+.custom-dialog {
+  display: none;
+  width: 80%;
+  border-radius: 10px;
+  z-index:  9999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+#alertbtn {
+  background-color: blue;
+  color: white;
+}
+
+.dialog-content {
+  padding: 6px;
+  text-align: center;
+}
+.dialog-content h2{
+  color: orangered;
+  font-size: 6vw;
+}
+
+.dialog-content p{
+  font-size: 4vw;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.alertTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.alertp {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+#alertbtn button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+#alertbtn a {
+  text-decoration: none;
+}
+
+#splash-screen{
+  padding: 10px;
+  background: white;
+  border-radius: 5;
+  border: 0px;
+  display: block;
+  width: max-content;
+  max-height: 50px;
+  position: fixed;
+  top: 50%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+}
+#splash-screen p{
+  margin: 0px;
+  font-style: italic;
+}
+/*#splash-screen {
+  animation: rotate 5s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/
+
+
+
+/*menu de mon site */
+.menutop {
+ min-width: 50%;
+  height: max-content;
+  background-color: blue;
+  position: fixed;
+  top: 0; /* Placer l'élément en bas de la fenêtre */
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1; /* Valeur inférieure par rapport à .sidenav, mais supérieure à d'autres éléments */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: blue;
+}
+
+.topbtn {
+  display: block;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: white;
+  padding: 2px;
+  height: 30px;
+  width: 30px;
+}
+.fa-bars{
+text-align: center;
+}
+#close{
+display: none;
+text-align: center;
+}
+
+.topbtn i {
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 1px;
+}
+.rc{
+position: absolute;
+right: 0;
+margin-right: 5px;
+width: fit-content;
+font-size: 12px;
+}
+
+.topbtn span {
+  font-size: 12px;
+}
+.rc span:nth-child(4){
+color: #f20b0b;
+}
+
+.menu {
+margin-top: 45px;
+  position: fixed;
+  top: 1px;
+  left: 340px; /* Initially off-screen */
+  width: 250px;
+  height: 100%;
+  z-index: 101;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: opacity 0.6s ease-out;
+  opacity: 0;
+  padding-top: 6px;
+  color: white;
+  display: none
+
+}
+
+
+.menu.open {
+  opacity: 1; /* When menu is open, set opacity to fully opaque */
+}
+.art-myuser{
+height: 100%;
+min-width: 100%;
+background-color: white;
+color: black;
+margin-top: -17px;
+padding: 10px;
+}
+.art-myuser img{
+display: block;
+width: 50px;
+height: 50px;
+margin:10px auto;
+border-radius: 50%;
+border: 2px solid blue;
+}
+.art-myuser p{
+margin: 2px;
+text-align: center;
+}
+
+.menu h1 {
+  font-size: 20px;
+}
+.sideItem{
+border: 1px solid white;
+}
+.sideItem p{
+width: 70%;
+border: 1px white solid;
+text-align: left;
+cursor: pointer;
+}
+
+.sideItem p a {
+  margin: 5px;
+  color: white;
+  text-align: left;
+}
+
+.footer-item i {
+  margin-right: 5px;
+}
+/*fin menu */
+
+
+/*partie container de mon site*/
+.container{
+  width: 50%;
+  min-height: 100vh;
+  margin:45px auto 40px;
+  background: white;
+}
+
+.container .welcome{
+  font-size: 32px;
+}
+.container .p-welcome{
+  font-size: 18px;
+}
+.container .h3{
+  font-size: 18px;
+}
+
+.placement p:nth-child(1){
+  font-size: 18px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: blue;
+}
+
+.placement p:nth-child(2){
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: rgb(255, 115, 0);
+}
+/*fin partie container de mon site*/
+
+
+
+/* footer de mon site*/
+.mobile-footer {
+  width: 49%;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  z-index: 20;
+  transform: translate(-50%);
+  background-color: #ffffff;
+  border-top: 1px solid #dddddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.footer-item {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #555555;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Additional styles for the icon in the second link */
+.footer-item i {
+  font-size: 18px;
+  margin-right: 5px;
+}
+/*fin footer de mon site*/
+ 
+
+
+@media screen and (max-width: 800px){
+
+
+#splash-screen {
+    position: fixed;
+    top: 50%;
+    left: 40%;
+    width: max-content;
+    max-height: 50px;
+    transform: translate(-50%, -50%);
+    display: none;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+
+
+#main-content {
+    display: none; /* Hide main content initially */
+}
+
+}
+
+
+/*menu styele*/
+@media screen and (max-width: 800px){
+  
+  .menutop {
+    height: 40px;
+    background-color: blue;
+    position: fixed;
+    top: 0; /* Placer l'élément en bas de la fenêtre */
+    left: 0;
+    transform: translate(0%);
+    z-index: 1; /* Valeur inférieure par rapport à .sidenav, mais supérieure à d'autres éléments */
+    min-width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    color: blue;
+  }
+
+.topbtn {
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: white;
+    padding: 2px auto;
+    height: 30px;
+    width: 30px;
+}
+.fa-bars{
+  text-align: center;
+}
+#close{
+  display: none;
+  text-align: center;
+}
+
+.topbtn i {
+    cursor: pointer;
+    font-size: 6vw;
+    margin-right: 1px;
+}
+.rc{
+  position: absolute;
+  right: 0;
+  margin-right: 15px;
+  width: fit-content;
+  font-size: 4vw;
+}
+
+.topbtn span {
+    font-size: 4vw;
+}
+.rc span:nth-child(4){
+  color: #f20b0b;
+}
+
+.menu {
+  margin-top: 45px;
+    position: fixed;
+    top: 5px;
+    left: 0; /* Initially off-screen */
+    width: 250px;
+    height: 100%;
+    z-index: 2;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: opacity 0.6s ease-out;
+    opacity: 0;
+    padding-top: 6px;
+    color: white;
+    display: none;
+}
+
+.menu.open {
+  opacity: 1; /* When menu is open, set opacity to fully opaque */
+}
+
+.art-myuser{
+  height: 100%;
+  min-width: 100%;
+  background-color: white;
+  color: black;
+  margin-top: -17px;
+  padding: 10px;
+}
+.art-myuser img{
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin:10px auto;
+  border-radius: 50%;
+  border: 2px solid blue;
+}
+.art-myuser p{
+  margin: 2px;
+  text-align: center;
+}
+
+.menu h1 {
+    font-size: 20px;
+}
+.sideItem{
+  border: 1px solid white;
+}
+.sideItem p{
+  width: 70%;
+  border: 1px white solid;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sideItem p a {
+    margin: 5px;
+    color: white;
+    text-align: left;
+}
+
+.footer-item i {
+    margin-right: 5px;
+}
+
+  
+
+}
+
+
+
+/*ontainer de l'application*/
+@media screen and (max-width: 800px){
+  .container {
+    overflow-y: auto;
+    margin-top: 50px;
+    margin-bottom: 55px;
+    padding-top: 5px;
+    max-width: 100%;
+    min-width: 99%;
+    min-height: 80vh;
+    border: 1px solid lime;
+    background-color: rgb(255, 255, 255);
+}
+
+
+.container .welcome{
+  font-size: 18px;
+}
+.container .p-welcome{
+  font-size: 3.5vw;
+}
+.container .h3{
+  font-size: 6vw;
+}
+/*fin partie container de mon site*/
+}
+
+@media screen and (max-width: 800px){
+  .mobile-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #dddddd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.footer-item {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #555555;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Additional styles for the icon in the second link */
+.footer-item i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+}
+

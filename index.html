@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-zruApR6S1gbL0OeSqjrFYseztvotdAyMBwK9aaVg6AeY3I4Wl9PrtQ/kOcvtO1PnwYFqxu3MNSXfs3lEpxdumQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Inspiration Divine et Amour Eternel</title>
+</head>
+<body>
+    <div class="container">
+        <main>
+            
+            <div>
+                <img src="" alt="LOGO INDIAMET">
+                <h1>BIENVENUE SUR INDIAMET</h1>
+                <P>Inspiration Divine et Amour Eternel</P>
+                <p>Ce site est disponible que sur android</p>
+            </div>
+        </main>
+        <main>
+            <div id="customDialog" class="alert"></div>
+            <menu id="menu"></menu>
+            <div class="formulaire"></div>
+            <footer class="mobile-footer"></footer>
+            <section>
+                <div class="formulairechaine">
+                    <div>
+                        <h3>Ajouter votre chaine / Groupe Whatsapp</h3>
+                        <h4>Aidez les gens a retrouver votre groupe plus facile</h4><hr>
+                    </div>
+                    <div class="input">
+                        <div><input type="text" id="nomChaine" placeholder="Nom chaine / Groupe"></div>
+                        <div><input type="text" id="details" placeholder="details sur votre chaine"></div>
+                        <div><input type="text" id="description" placeholder="Description de votre chaine"></div>
+                        <div><input type="text" id="lienchaine" placeholder="Lien de votre chaine"></div>
+                        <div>
+                            <select name="option" id="typeChaine">
+                                <option value="Education">Education</option>
+                                <option value="Humour">Humour</option>
+                                <option value="Politique">Politique</option>
+                                <option value="Rencontre">Tencontre</option>
+                                <option value="sexualite">Sexualite</option>
+                            </select>
+                        </div>
+                        <div class="formBtn">
+                            <button class="submit" onclick="save()">Ajouter chaine / groupe</button>
+                            <button onclick="fermer()">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+           <div id="Indi"></div>
+        </main>
+    </div>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+
+    <script src="/js/showdata.js" defer></script>
+    <script src="/js/script.js" defer></script>
+    <script src="/js/menufooter.js" defer></script>
+    <script src="/js/button.js" defer></script>
+    <script src="/js/user.js" defer></script>
+
+    <script src="/js/indi.js" defer></script>
+    
+</body>
+</html>

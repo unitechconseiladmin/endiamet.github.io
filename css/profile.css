@@ -1,0 +1,248 @@
+h2 {
+  text-align: center;
+}
+
+#profile-info {
+  display: block;
+  flex-wrap: wrap;
+}
+#profile-info p{
+  margin: 5px;
+  font-size: 14px;
+}
+
+#profile-info div:nth-child(1){
+  width: 80%;
+  margin:0 auto 5px;
+  text-align: center;
+  border: 3px solid gray;
+  padding: 5px;
+}
+#profile-info div:nth-child(2){
+  margin: auto;
+  text-align: center;
+  border: 3px solid gray;
+  padding: 5px;
+  margin:0 auto 5px;
+}
+
+#profile-info div:nth-child(3){
+  margin: auto;
+  text-align: center;
+  border: 3px solid gray;
+  padding: 5px;
+  margin:0 auto 5px;
+}
+
+
+#profile-info img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+#edit-profile {
+  margin-top: 20px;
+}
+
+#edit-profile form label,
+#edit-profile form input,
+#edit-profile form textarea {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#edit-profile form input[type="submit"],
+#edit-profile form button {
+  margin-top: 10px;
+}
+
+#edit-profile form button {
+  margin-right: 10px;
+}
+
+
+/* Styles pour le conteneur du formulaire */
+
+
+/* Styles pour les titres */
+h3 {
+  color: #333;
+}
+
+/* Styles pour les paragraphes */
+p {
+  color: #666;
+}
+.input{
+  border: 2px solid gray;
+  overflow: hidden;
+  margin: 5px auto;
+  width: 100%;
+}
+/* Styles pour les champs de saisie */
+input[type="email"],
+input[type="number"],
+button {
+  font-size: 16px;
+  width: 100%;
+  padding: 7px;
+}
+
+/* Style pour le bouton */
+button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Style pour le paragraphe résultat */
+#converRc {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+}
+@media screen and (max-width: 700px){
+  h2 {
+    text-align: center;
+}
+
+#profile-info {
+    display: block;
+    flex-wrap: wrap;
+}
+#profile-info p{
+    margin: 5px;
+    font-size: 4vw;
+}
+
+#profile-info div:nth-child(1){
+    width: 80%;
+    margin:0 auto 5px;
+    text-align: center;
+    border: 3px solid gray;
+    padding: 5px;
+}
+#profile-info div:nth-child(2){
+    margin: auto;
+    text-align: center;
+    border: 3px solid gray;
+    padding: 5px;
+    margin:0 auto 5px;
+}
+
+#profile-info div:nth-child(3){
+    margin: auto;
+    text-align: center;
+    border: 3px solid gray;
+    padding: 5px;
+    margin:0 auto 5px;
+}
+
+
+#profile-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+#edit-profile {
+    margin-top: 20px;
+}
+
+#edit-profile form label,
+#edit-profile form input,
+#edit-profile form textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#edit-profile form input[type="submit"],
+#edit-profile form button {
+    margin-top: 10px;
+}
+
+#edit-profile form button {
+    margin-right: 10px;
+}
+
+
+  /* Styles pour le conteneur du formulaire */
+
+
+  /* Styles pour les titres */
+  h3 {
+    color: #333;
+  }
+
+  /* Styles pour les paragraphes */
+  p {
+    color: #666;
+  }
+.input{
+    border: 2px solid gray;
+    overflow: hidden;
+    margin: 5px auto;
+    width: 100%;
+}
+  /* Styles pour les champs de saisie */
+  input[type="email"],
+  input[type="number"],
+  button {
+    font-size: 16px;
+    width: 100%;
+    padding: 7px;
+  }
+
+  /* Style pour le bouton */
+  button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /* Style pour le paragraphe résultat */
+  #converRc {
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+  }
+}
+
+
+
+
+
+h1 {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
