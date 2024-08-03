@@ -1,150 +1,165 @@
 
 // Reference to the "posts" node
-var postsRef = database.ref('INDIAMET/Indi');
+var postsRef = database.ref('ENDIAMET/Indi');
 
 // Listen for changes in the data
+let allPosts = [];
+let postsByType = {};
+
 postsRef.on('value', function(snapshot) {
     // Clear existing posts and filter bar
     document.getElementById('Indi').innerHTML = '';
+    document.getElementById('filter-container').innerHTML = '';
 
     // Initialize an object to store posts by type
-    var postsByType = {};
+    postsByType = {};
 
-    // Loop through each post in the snapshot
     snapshot.forEach(function(childSnapshot) {
-        var post = childSnapshot.val();
-        var postId = childSnapshot.key;
+        const post = childSnapshot.val();
+        const postId = childSnapshot.key;
 
-        // Check if the post has a type
         if (post.Type) {
-            // Group posts by type
             if (!postsByType[post.Type]) {
                 postsByType[post.Type] = [];
             }
-            postsByType[post.Type].push({ postId: postId, post: post });
+            postsByType[post.Type].push({ postId, post });
+            allPosts.push({ postId, post });
         }
     });
 
     // Sort posts by type
-    var sortedTypes = Object.keys(postsByType).sort();
+    const sortedTypes = Object.keys(postsByType).sort();
 
     // Create filter buttons
-    var allButton = createFilterButton('All', displayAllPosts);
-    document.getElementById('Indi').appendChild(allButton);
+    const allButton = createFilterButton('All', () => displayPosts(allPosts));
+    document.getElementById('filter-container').appendChild(allButton);
 
-    sortedTypes.forEach(function(type) {
-        var filterButton = createFilterButton(type, function() {
-            filterPostsByType(type);
-        });
-        document.getElementById('Indi').appendChild(filterButton);
+    sortedTypes.forEach(type => {
+        const filterButton = createFilterButton(type, () => filterPostsByType(type));
+        document.getElementById('filter-container').appendChild(filterButton);
     });
 
     // Display all posts by default
-    displayAllPosts();
+    displayPosts(allPosts);
 
-    // Function to create a filter button
-    function createFilterButton(text, onClick) {
-        var button = document.createElement('button');
-        button.textContent = text;
-        button.addEventListener('click', onClick);
-        return button;
-    }
-
-    // Function to filter posts by type
-    function filterPostsByType(type) {
-        var postsOfType = postsByType[type] || [];
-        displayPosts(postsOfType);
-    }
-
-    // Function to display all posts
-    function displayAllPosts() {
-        var allPosts = [];
-        sortedTypes.forEach(function(type) {
-            allPosts = allPosts.concat(postsByType[type]);
+    // Add search functionality
+    document.getElementById('search-bar').addEventListener('input', function(event) {
+        const query = event.target.value.toLowerCase();
+        const filteredPosts = allPosts.filter(postObj => {
+            const title = (postObj.post.Title || '').toLowerCase();
+            return title.includes(query);
         });
-        displayPosts(allPosts);
-    }
+        displayPosts(filteredPosts);
+    });
+});
 
-    // Function to display posts
-    function displayPosts(posts) {
-        var chaineElement = document.getElementById('Indi');
-        chaineElement.innerHTML = ''; // Clear existing posts
+// Function to create a filter button
+function createFilterButton(text, onClick) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.addEventListener('click', onClick);
+    return button;
+}
 
-        // Loop through posts and display them
-        posts.forEach(function(postObj) {
-            var post = postObj.post;
-            var postId = postObj.postId;
+// Function to filter posts by type
+function filterPostsByType(type) {
+    const postsOfType = postsByType[type] || [];
+    displayPosts(postsOfType);
+}
 
-            // Create HTML elements for each post
-            var postDiv = document.createElement('div');
-            postDiv.className = 'card';
-            postDiv.setAttribute('data-type', post.Type);
+// Function to display posts
+function displayPosts(posts) {
+    const chaineElement = document.getElementById('Indi');
+    chaineElement.innerHTML = ''; // Clear existing posts
 
-            // Convert post SendDateTime to a readable format
-            var postDate = new Date(post.SendDateTime);
-            var timeAgo = getTimeAgo(postDate);
+    posts.forEach(postObj => {
+        const post = postObj.post;
+        const postId = postObj.postId;
 
-            postDiv.innerHTML = `
-                <div id="${postId}" class="filterDiv_${post.Type} postId">
-                    <div class="cardItem">
-                        <div class="textItem">
-                            <div class="img">
-                                <img src="${post.Image || post.LinkImage || '/images/icon.png'}" alt="">
-                                <h3 class="Title" id="title_${postId}">${post.NomChaine || ''}</h3>
-                            </div>
-                            <hr>
-                            <h4 class="details">${post.Details || ''}</h4>
-                            <p class="desc" id="des_${postId}">${post.Description || ''}</p>
-                            <p class="time"><i class="fa fa-time"></i> ${postDate.toLocaleTimeString()} (${timeAgo} ago)</p>
-                            <div class="btncard">
-                                <button><i class="fa fa-whatsapp"></i><a id="lienchaine_${postId}" href="${post.LienChaine || ''}">Suivre</a></button>
-                            </div>
-                            <div class="btnpartage">
-                                <button onclick="toggleComments('${postId}')"><i class="fa fa-comment"></i></button>
-                                <span class="count" id="comment-count-${postId}">
-                                    ${post.Zcomments ? formatNumber(Object.keys(post.Zcomments).length) : '0'}
-                                </span>
-                                <button onclick="likePost('${postId}')"><i class="fa fa-thumbs-up"></i></button>
-                                <span id="likecount_${postId}">${formatNumber(post.likes || 0)}</span>
-                                <button onclick="dislikePost('${postId}')"><i class="fa fa-thumbs-down"></i></button>
-                                <span id="dislikecount_${postId}">
-                                    ${post.Dislikes ? formatNumber(Object.keys(post.Dislikes).length) : '0'}
-                                </span>
-                                <span onclick="whatsapp('${postId}')"><i class="fa fa-whatsapp"></i></span>
-                                <span onclick="facebook('${postId}')"><i class="fa fa-facebook"></i></span>
-                                <span onclick="twitter('${postId}')"><i class="fa fa-twitter"></i></span>
-                                <span class="lireLaSuite" style="display: none;"><i>Lire la suite...</i></span>
-                                <span style="display: none;" class="more lireLaSuite" onclick="btncl('${encodeURIComponent(post.Title || '')}')"><i>Lire la suite</i></span>
-                            </div>
-                            <div id="comments-${postId}" style="display: none;">
-                                <h3>Commentaires</h3>
-                                <div id="comments-list-${postId}" class="comments-list"></div>
-                                <form id="comment-form-${postId}" class="comment-form" onsubmit="return addComment(event, '${postId}')">
-                                    <input type="text" id="comment-input-${postId}" placeholder="Ajouter un commentaire..." required>
-                                    <button type="submit"><i class="fa fa-send"></i></button>
-                                </form>
-                            </div>
+        // Create HTML elements for each post
+        const postDiv = document.createElement('div');
+        postDiv.className = 'card';
+        postDiv.setAttribute('data-type', post.Type);
+
+        const postDate = new Date(post.SendDateTime);
+        const timeAgo = getTimeAgo(postDate);
+
+        postDiv.innerHTML = `
+            <div id="${postId}" class="filterDiv_${post.Type} postId">
+                <div class="cardItem">
+                    <div class="textItem">
+                        <div class="img">
+                            <img src="${post.Image || post.LinkImage || '/images/icon.png'}" alt="">
+                            <h1 class="Title" id="title_${postId}">${post.Title || ''}</h1>
+                        </div>
+                        <p class="desc" id="des_${postId}">${post.Description || ''}</p>
+                        <p class="time"><i class="fa fa-time"></i> ${postDate.toLocaleTimeString()} (${timeAgo})</p>
+                        <div class="btncard">
+                            <button><i class="fa fa-whatsapp"></i><a id="lienchaine_${postId}" href="${post.LienChaine || ''}">Suivre</a></button>
+                        </div>
+                        <div class="btnpartage">
+                            <button onclick="toggleComments('${postId}')"><i class="fa fa-comment"></i></button>
+                            <span class="count" id="comment-count-${postId}">
+                                ${post.Zcomments ? formatNumber(Object.keys(post.Zcomments).length) : '0'}
+                            </span>
+                            <button onclick="likePost('${postId}')"><i class="fa fa-thumbs-up"></i></button>
+                            <span id="likecount_${postId}">
+                                ${post.Zlikes ? formatNumber(Object.keys(post.Zlikes).length) : '0'}
+                            </span>
+                            <span onclick="whatsapp('${postId}')"><i class="fa fa-whatsapp"></i></span>
+                            <span onclick="facebook('${postId}')"><i class="fa fa-facebook"></i></span>
+                            <span onclick="twitter('${postId}')"><i class="fa fa-twitter"></i></span>
+                            <span class="lireLaSuite" style="display: none;"><i>Lire la suite...</i></span>
+                            <span style="display: none;" class="more lireLaSuite" onclick="btncl('${encodeURIComponent(post.Title || '')}')"><i>Lire la suite</i></span>
+                        </div>
+                        <div id="comments-${postId}" style="display: none;">
+                            <h3>Commentaires</h3>
+                            <div id="comments-list-${postId}" class="comments-list"></div>
+                            <form id="comment-form-${postId}" class="comment-form" onsubmit="return addComment(event, '${postId}')">
+                                <input type="text" id="comment-input-${postId}" placeholder="Ajouter un commentaire..." required>
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            `;
+            </div>
+        `;
 
-            // Append the post to the 'chaine' div
-            chaineElement.appendChild(postDiv);
+        chaineElement.appendChild(postDiv);
 
-            // Load comments for each post
-            loadComments(postId);
-        });
+        loadComments(postId);
+    });
+}
+
+    // Function to get time ago in a readable format
+    function getTimeAgo(date) {
+        var now = new Date();
+        var seconds = Math.floor((now - date) / 1000);
+        var interval = Math.floor(seconds / 31536000);
+        if (interval > 1) return interval + " years ago";
+        interval = Math.floor(seconds / 2592000);
+        if (interval > 1) return interval + " months ago";
+        interval = Math.floor(seconds / 86400);
+        if (interval > 1) return interval + " days ago";
+        interval = Math.floor(seconds / 3600);
+        if (interval > 1) return interval + " hours ago";
+        interval = Math.floor(seconds / 60);
+        if (interval > 1) return interval + " minutes ago";
+        return Math.floor(seconds) + " seconds ago";
     }
-});
 
 
+
+var dialog = document.querySelector(".alert");
+var load = document.querySelector(".load");
+var alertTitle = document.querySelector(".alertTitle");
+var alertp = document.querySelector(".alertp");
 
   function whatsapp(postId) {
     var title = document.getElementById(`title_${postId}`).innerHTML;
     var details = document.getElementById(`des_${postId}`).innerHTML;
     var lien = document.getElementById(`lienchaine_${postId}`).getAttribute('href'); // RÃ©cupÃ©rer l'attribut href du lien
-    var web ='www.unitechconseil.online/chaine';
+    var web ='https://endiamet.netlify.app';
     // Construire le message WhatsApp avec le titre, les dÃ©tails, le lien et l'URL actuelle
     var message = `*${title}*\n\n${details}\n\nSuivez le lien : ${lien}\n\n_Trouvez d'autres chaÃ®nes ou groupes_\n${web}`;
 
@@ -183,44 +198,50 @@ function twitter(postId) {
 
 
   
-  // Function to handle liking a post
-  function likePost(postId) {
+// Function to handle liking a post
+function likePost(postId) {
     var userData = JSON.parse(localStorage.getItem('userData'));
-    var name = document.getElementById('name').innerHTML;
-    if (userData){
-        var postRef = database.ref(`WHATSAPP/${postId}/Zlikes/` +name);
-        postRef.set({
-            Username: name,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
+    console.log(userData);
+    
+    if (userData) {
+        var postRef = database.ref(`ENDIAMET/Indi/${postId}/Zlikes/${userData.Username}`);
+        
+        // Vérifier si l'utilisateur a déjà aimé le post
+        postRef.once('value').then(snapshot => {
+            if (snapshot.exists()) {
+                // L'utilisateur a déjà aimé ce post
+                console.log('Post already liked by this user.');
+                document.querySelector('.alert').style.display = 'block'; // Afficher un message ou une alerte
+                document.querySelector('.btnconnection').style.display = 'none';
+                document.querySelector('.alertp').style.display = 'none';
+                document.querySelector('.alertTitle').innerHTML = 'Vous avez deja aimé ce poste';
+            } else {
+                // L'utilisateur n'a pas encore aimé le post, ajouter le like
+                postRef.set({
+                    Username: userData.Username,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                }).then(() => {
+                    window.location.reload(); // Recharger la page après avoir ajouté le like
+                }).catch(error => {
+                    console.error('Error updating like:', error); // Gestion des erreurs
+                });
+            }
+        }).catch(error => {
+            console.error('Error checking like status:', error); // Gestion des erreurs
         });
-    }else{
+    } else {
         document.querySelector('.alert').style.display = 'block';
-        document.querySelector('.btnconnection').style.display = 'block';
-        document.querySelector('.message').innerHTML = 'connectez-vous';
     }
-  }
+}
+
+
   
-  // Function to handle disliking a post
-  function dislikePost(postId) {
-    var userData = JSON.parse(localStorage.getItem('userData'));
-    var name = document.getElementById('name').innerHTML;
-    if (userData){
-        var postRef = database.ref(`WHATSAPP/${postId}/Dislikes/` +name);
-        postRef.set({
-            Username: name,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-        });
-    }else{
-        document.querySelector('.alert').style.display = 'block';
-        document.querySelector('.btnconnection').style.display = 'block';
-        document.querySelector('.message').innerHTML = 'connectez-vous ';
-    }
-  }
+
 
 
 // Function to load comments for a post
 function loadComments(postId) {
-    var commentsRef = database.ref(`WHATSAPP/${postId}/Zcomments`);
+    var commentsRef = database.ref(`ENDIAMET/Indi/${postId}/Zcomments`);
     commentsRef.on('value', function(snapshot) {
         var commentsList = document.getElementById(`comments-list-${postId}`);
         commentsList.innerHTML = ''; // Clear existing comments
@@ -281,7 +302,7 @@ function addComment(event, postId) {
         var commentInput = document.getElementById(`comment-input-${postId}`);
         var commentText = commentInput.value.trim();
         if (commentText !== '') {
-            var postRef = database.ref(`WHATSAPP/${postId}/Zcomments`);
+            var postRef = database.ref(`ENDIAMET/Indi/${postId}/Zcomments`);
             postRef.push({
                 Username: name,
                 comment: commentText,

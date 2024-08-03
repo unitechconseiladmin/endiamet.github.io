@@ -1,4 +1,25 @@
+
 /*------------------ formulaire inscription -------------------------*/
+
+let currentSection = 0;
+let sections;
+
+function nextSection() {
+    sections[currentSection].classList.remove('active');
+    currentSection = (currentSection + 1) % sections.length;
+    sections[currentSection].classList.add('active');
+}
+
+function prevSection() {
+    if (sections && sections.length > 0) {
+        sections[currentSection].classList.remove('active');
+        currentSection = (currentSection - 1 + sections.length) % sections.length;
+        sections[currentSection].classList.add('active');
+    } else {
+        console.error('No sections found or sections not properly initialized.');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.querySelector('.formulaire');
     const contentForm = `
@@ -87,6 +108,14 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     `;
     form.innerHTML = contentForm;
+
+    form.innerHTML = contentForm;
+    sections = document.querySelectorAll('.form-section');
+    if (sections.length > 0) {
+        sections[0].classList.add('active');
+    } else {
+        console.error('No form sections found.');
+    }
 });
 /*------------------Fin formulaire inscription -------------------------*/
 
@@ -186,116 +215,124 @@ function saveUserDataLocally(userData) {
     
   
   
-  
-    function signup() {
-      // Generate a random number between 10 and 10009
-      var randomNumber = Math.floor(Math.random() * 10000) + 10;
-  
-      // Generate a random alphanumeric string
-      var characters = 'abcdefghijklmnopqrstuvwxyz';
-      var randomAlpha = '';
-      for (var i = 0; i < 3; i++) {
-          randomAlpha += characters.charAt(Math.floor(Math.random() * characters.length));
-      }
-  
-      // Display the random result on the page
-      var result = 'uc-' + randomAlpha + randomNumber;
-      document.getElementById('result').textContent = result;
-  
-      var name = document.getElementById('names').value;
-      var username = document.getElementById('utilisateur').value; // Nom d'utilisateur
-      var email = document.getElementById('emails').value;
-      var phone = document.getElementById('phones').value;
-      var password = document.getElementById('passwords').value;
-      var codePromo = document.getElementById('codePromo').value;
-      var p = document.getElementById('p').innerText; // Add this line
-  
-      // Variables
-      var dialog = document.querySelector(".alert");
-      var alertTitle = document.querySelector(".alertTitle");
-      var alertp = document.querySelector(".alertp");
-  
-      // Check if email exists
-      firebase.database().ref('users').orderByChild('Email').equalTo(document.getElementById('emails').value).once('value')
-          .then(function(emailSnapshot) {
-              if (emailSnapshot.exists()) {
-                  dialog.style.display='block';
-                  alertTitle.textContent='Email existe deja';
-                  alertp.textContent='essayez un autre';
-                  console.error('Email already exists');
-                  // You can handle the error accordingly, display a message to the user, etc.
-                  return;
-              }
-  
-              // Check if phone number exists
-              firebase.database().ref('users').orderByChild('Name').equalTo(name).once('value')
-                  .then(function(phoneSnapshot) {
-                      if (phoneSnapshot.exists()) {
-                          dialog.style.display='block';
-                          alertTitle.textContent='Nom existe deja';
-                          alertp.textContent='essayez un autre';
-                          console.error('Name already exists');
-                          // You can handle the error accordingly, display a message to the user, etc.
-                          return;
-                      }
-  
-                      firebase.database().ref('users').orderByChild('CodeReference').equalTo(codePromo).once('value')
-                      .then(function(snapshot) {
-                          if (snapshot.exists()) {
-                              // If the promo code exists, add points to the referred user
-                              snapshot.forEach(function(childSnapshot) {
-                                  var referredUserId = childSnapshot.key;
-                                  var referredUserPoints = childSnapshot.val().Points || 0;
-                                  var referredUserReferrals = childSnapshot.val().NbRef || 0;
-                  
-                                  // Add 10 points
-                                  var updatedPoints = referredUserPoints + 100;
-                                  var updatedRef = referredUserReferrals + 1;
-                  
-                                  // Update the referred user's points and number of referrals
-                                  firebase.database().ref('users/' + referredUserId).update({
-                                      Points: updatedPoints,
-                                      NbRef: updatedRef
-                                  });
-                  
-                                  console.log('Points added to referred user');
-                              });
-                          } else {
-                              console.log('Invalid promo code');
-                          }
-                      })
-                      .catch(function(error) {
-                          console.error('Error checking promo code:', error);
-                      });
-                  
-                      // Save user details
-                      firebase.database().ref('users/' +name).set({
-                          Email: email,
-                          Password: password,
-                          Name: name,
-                          Username: username,
-                          Phone: p + phone, // Include the country code in the phone number
-                          Points: 100,
-                          CodePromo: codePromo,
-                          CodeReference: result
-                      });
-                      
-                      console.log('Signup successful');
-                      document.getElementById('login').style.display='block';
-                      document.getElementById('signup').style.display='none';
-                      dialog.style.display='block';
-                      alertTitle.textContent='Unitech Conseil';
-                      alertp.textContent='Connexion réussie.';
-                      window.location.reload;
-                  
-                  })
-                  .catch(function (error) {
-                      console.error('Signup failed', error);
-                  });
-          })
-          .catch(function (error) {
-              console.error('Signup failed', error);
-          });
-  }
-  
-  
+  function signup() {
+    // Retrieve values from the form
+    var name = document.getElementById('names').value.trim();
+    var username = document.getElementById('utilisateur').value.trim();
+    var email = document.getElementById('emails').value.trim();
+    var phone = document.getElementById('phones').value.trim();
+    var password = document.getElementById('passwords').value.trim();
+    var codePromo = document.getElementById('codePromo').value.trim();
+    var p = document.getElementById('p').innerText;
+
+    // Validate required fields
+    if (!name || !username || !email || !phone || !password || !codePromo) {
+        alert('Tous les champs doivent être remplis.');
+        return;
+    }
+
+    // Generate a random number and alphanumeric string
+    var randomNumber = Math.floor(Math.random() * 10000) + 10;
+    var characters = 'abcdefghijklmnopqrstuvwxyz';
+    var randomAlpha = '';
+    for (var i = 0; i < 3; i++) {
+        randomAlpha += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    var result = 'uc-' + randomAlpha + randomNumber;
+    document.getElementById('result').textContent = result;
+
+    // Variables
+    var dialog = document.querySelector(".alert");
+    var alertTitle = document.querySelector(".alertTitle");
+    var alertp = document.querySelector(".alertp");
+
+    // Check if email exists
+    firebase.database().ref('users').orderByChild('Email').equalTo(email).once('value')
+        .then(function(emailSnapshot) {
+            if (emailSnapshot.exists()) {
+                dialog.style.display = 'block';
+                alertTitle.textContent = 'Email existe déjà';
+                alertp.textContent = 'Essayez un autre';
+                return;
+            }
+
+            // Check if name exists
+            firebase.database().ref('users').orderByChild('Name').equalTo(name).once('value')
+                .then(function(nameSnapshot) {
+                    if (nameSnapshot.exists()) {
+                        dialog.style.display = 'block';
+                        alertTitle.textContent = 'Nom existe déjà';
+                        alertp.textContent = 'Essayez un autre';
+                        return;
+                    }
+
+                    // Check promo code
+                    firebase.database().ref('users').orderByChild('CodeReference').equalTo(codePromo).once('value')
+                        .then(function(snapshot) {
+                            if (snapshot.exists()) {
+                                snapshot.forEach(function(childSnapshot) {
+                                    var referredUserId = childSnapshot.key;
+                                    var referredUserPoints = childSnapshot.val().Points || 0;
+                                    var referredUserReferrals = childSnapshot.val().NbRef || 0;
+
+                                    // Add 100 points
+                                    var updatedPoints = referredUserPoints + 100;
+                                    var updatedRef = referredUserReferrals + 1;
+
+                                    // Update referred user's points and referrals
+                                    firebase.database().ref('users/' + referredUserId).update({
+                                        Points: updatedPoints,
+                                        NbRef: updatedRef
+                                    });
+
+                                    console.log('Points added to referred user');
+                                });
+                            } else {
+                                console.log('Invalid promo code');
+                            }
+
+                            // Save user details
+                            firebase.database().ref('users/' + username).set({
+                                Email: email,
+                                Password: password,
+                                Name: name,
+                                Username: username,
+                                Phone: p + phone,
+                                Points: 100,
+                                CodePromo: codePromo,
+                                CodeReference: result
+                            });
+
+                            // Store user information in localStorage
+                            localStorage.setItem('userData', JSON.stringify({
+                                email: email,
+                                username: username,
+                                name: name,
+                                phone: p + phone,
+                                points: 100
+                            }));
+
+                            console.log('Signup successful');
+                            document.getElementById('login').style.display = 'block';
+                            document.getElementById('signup').style.display = 'none';
+                            dialog.style.display = 'block';
+                            alertTitle.textContent = 'Unitech Conseil';
+                            alertp.textContent = 'Connexion réussie.';
+                            window.location.reload();
+                        })
+                        .catch(function(error) {
+                            console.error('Error checking promo code:', error);
+                        });
+                })
+                .catch(function(error) {
+                    console.error('Error checking name:', error);
+                });
+        })
+        .catch(function(error) {
+            console.error('Error checking email:', error);
+        });
+}
+
+
+  /*------------------ formulaire inscription -------------------------*/
+ 

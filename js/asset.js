@@ -1,12 +1,11 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyBZ8Cb3b0rIUP6Sun95kw3OafQietso2PU",
-  authDomain: "unitehconseil.firebaseapp.com",
-  databaseURL: "https://unitehconseil-default-rtdb.firebaseio.com",
-  projectId: "unitehconseil",
-  storageBucket: "unitehconseil.appspot.com",
-  messagingSenderId: "344894635493",
-  appId: "1:344894635493:web:d003f5abc88a5e23c3030c",
-  measurementId: "G-M2XBSDLFQZ"
+  apiKey: "AIzaSyAYM5ULEm_fRNci1MNHT1630v0VF9hEdqQ",
+  authDomain: "endiamet-7ebbb.firebaseapp.com",
+  databaseURL: "https://endiamet-7ebbb-default-rtdb.firebaseio.com",
+  projectId: "endiamet-7ebbb",
+  storageBucket: "endiamet-7ebbb.appspot.com",
+  messagingSenderId: "490549714924",
+  appId: "1:490549714924:web:f3e531c491b16091e52ac9"
     };
 
 firebase.initializeApp(firebaseConfig);

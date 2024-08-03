@@ -68,3 +68,29 @@ function logout() {
     console.log("Logging out...");
     window.location.reload();
 }
+
+
+
+// Fonction pour afficher ou masquer le bouton "Monter vers le haut"
+function toggleScrollToTopButton() {
+    const scrollToTopButton = document.getElementById('scroll-to-top');
+    if (window.scrollY > 300) { // Affiche le bouton si l'utilisateur a défilé de plus de 300px
+        scrollToTopButton.style.display = 'block';
+    } else {
+        scrollToTopButton.style.display = 'none';
+    }
+}
+
+// Fonction pour faire défiler la page vers le haut
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Défilement en douceur
+    });
+}
+
+// Ajoute un écouteur d'événements pour afficher le bouton en fonction du défilement
+window.addEventListener('scroll', toggleScrollToTopButton);
+
+// Ajoute un écouteur d'événements pour faire défiler vers le haut au clic sur le bouton
+document.getElementById('scroll-to-top').addEventListener('click', scrollToTop);

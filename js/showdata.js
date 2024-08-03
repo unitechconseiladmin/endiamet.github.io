@@ -102,3 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
         //document.querySelector('.showconnection').style.display='block';
     }
 });
+
+
+/*------------------ formulaire inscription -------------------------*/

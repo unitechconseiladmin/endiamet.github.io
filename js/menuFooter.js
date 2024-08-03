@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <p><a href="/index.html"><i class="fa fa-home"></i> Accueil</a></p>
                         <p><a href="/c/concours.html"><i class="fa fa-home"></i> Concours</a></p>
                         <p id="profile"><a onclick="profile()"><i class="fa fa-user"></i> Profile</a></p>
+                        ${isLoggedIn ? `
+                        <p id="logout"><a onclick="logout()"><i class="fa fa-unlock"></i> Déconnectez</a></p>
+                    ` :  `<p id="connect" onclick="openform()"><i class="fa fa-lock"></i>Connectez</p>
+                    `}
                     </div>
                 </div>
             </div>

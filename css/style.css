@@ -2,6 +2,8 @@ body{
     background: white;
     padding: 0px;
     margin: 0px;
+    overflow-x: hidden;
+
 }
 *{
     box-sizing: border-box;
@@ -16,7 +18,8 @@ body{
     --gray: #eee9e9;        /* Blanc */
   }
 .container{
-    height: 100vh;
+    margin-bottom: 50px;
+    overflow-x: hidden;
 }
 .container main:nth-child(1){
     display: flex;
@@ -55,14 +58,55 @@ ul li{
     padding: 1px;
     margin: 2px;
 }
+.btnscroll{
+    display: none; 
+    position: fixed; 
+    bottom: 50px; 
+    right: 5px; 
+    padding: 10px; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 50px; 
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 800px){
+    /* Style de la barre de défilement */
+::-webkit-scrollbar {
+    width: 5px; /* Largeur de la barre de défilement */
+}
+
+/* Style de la piste de défilement */
+::-webkit-scrollbar-track {
+    background: #aaaaaa; /* Couleur de la piste */
+    border-radius: 70px;
+}
+
+/* Style du curseur de défilement */
+::-webkit-scrollbar-thumb {
+    background: #0509ff; /* Couleur du curseur */
+    border-radius: 70px;
+}
+
+/* Style du curseur de défilement au survol */
+::-webkit-scrollbar-thumb:hover {
+    background: #ff3c00; /* Couleur du curseur au survol */
+}
+
+}
 
 
 
 @media screen and (max-width: 800px){
     .container{
-        border: 5px solid rgb(0, 4, 255);
+        border: 1px solid lime;
         margin-top: 50px;
+        margin-bottom: 50px;
         position: relative;
+        display: block;
+        overflow-y: auto;
     }
     .container main:nth-child(1){
         display: none;
@@ -278,264 +322,7 @@ menu{
 }
 
 
-/*carde post*/
-@media screen and (max-width: 800px){
-    
-.card{
-    width: 99%;
-    position: relative;
-    z-index: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    min-height: 100%;
-   
-}
-#chaine{
-    width: 99%;
-    position: relative;
-    z-index: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    min-height: 100%;
-   
-}
 
-.card{
-    position: relative;
-    width: 99%;
-    margin: 2px 1px 5px 2px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgb(28, 85, 2);
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-}
-.cardItem .img{
-    display: flex;
-    align-items: center;
-    margin: 5px;
-    border: 0px;
-    
-}
-a{
-    text-decoration: none;
-    color: green;
-}
-
-.cardItem .img img{
-    width: 50px;
-    height: 50px;
-}
-.cardItem h3{
-    font-size: 18px;
-    color: green;
-    margin: 5px;
-}
-.cardItem h4{
-    color: rgb(65, 61, 60);
-    margin: 4px;
-
-}
-.cardItem .time{
-    color: red;
-    margin-top: 15px;
-}
-.cardItem p {
-    font-size: 14px;
-    margin: 3px 5px;
-    color: black;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Nombre de lignes Ã  afficher */
-    -webkit-box-orient: vertical;
-}
-.cardItem i{
-    font-size: 14px;
-    color: rgb(255, 81, 0);
-}
-
-.card .btnpartage{
-    display: flex;
-}
-.card .btnpartage span{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 3px;
-    margin: 5px 3px;
-    width: 17px;
-    height: 17px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-.card .btnpartage span:hover{
-    zoom: 1.03;
-    color: white;
-    font-size: 14px;
-}
-.card .btnpartage span:active{
-    background-color: green;
-    color: white;
-    font-size: 14px;
-}
-
-.card .btnpartage .fa-whatsapp{
-    color: green;
-    border: none;
-}
-.card .btnpartage .fa-facebook{
-    color: rgb(24, 21, 218);
-}
-.card .btnpartage .fa-twitter{
-    color: rgb(7, 130, 179);
-}
-
-.card .barlike, .card .bardislike, .card .barcomment{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    border-bottom: 1px solid green;
-    height: max-content;
-}
-.card .barlike span, .card .bardislike span, .card .barcomment span{
-    font-size: 14px;
-    width: max-content;
-    height: max-content;
-    padding: 2px;
-    color: rgb(11, 66, 3);
-    border: 0px;
-
-}
-
-.card .btnpartage .lireLaSuite{
-    width: max-content;
-}
-.card .btncard{
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.card .btncard button{
-    font-size: 14px;
-    background: white;
-    color: green;
-    margin: 2px 5px 5px 5px;
-    border-radius: 7px;
-    box-shadow: 0px 0px 5px 0px rgba(8, 70, 6, 0.979);
-
-}
-.card .btncard button i{
-    margin-right: 5px;
-    background-color: white;
-    padding: 3px;
-    color: green;
-    border-radius: 25%;
-}
-.card .btncard a {
-    color: green;
-}
-.card .btncard span{
-    font-size: 14px;
-}
-}
-
-
-
-
-
-/*commentaire*/
-@media screen and (max-width: 800px) {
-    /* Styles for comments section */
-.comments-list{
-    margin-top: 10px;
-}
-#comments-list{
-    border: 2px solid red;
-}
-.comment{
-    max-width: 98%;
-    margin: 10px auto;
-    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
-    border-radius: 10px;
-}
-.comment h2{
-    color: green;
-    font-size: 16px;
-    margin: 5px;
-}
-.comment span{
-    font-size: 12px;
-}
-.comments-list p {
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.comment-form {
-    margin-top: 10px;
-    display: flex;
-}
-
-.comment-form input[type="text"] {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.comment-form button {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 10px;
-}
-
-.comment-form button:hover {
-    background-color: #218838;
-}
-
-/* Styles for like, dislike and comment bars */
-.barcomment, .barlike, .bardislike {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.barcomment i, .barlike i, .bardislike i {
-    margin-right: 5px;
-    color: green;
-}
-
-.barcomment button, .barlike button, .bardislike button {
-    background-color: #ffffff;
-    color: #0f0e0e;
-    border: none;
-    padding: 5px 3px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 3px;
-}
-
-.barcomment button:hover, .barlike button:hover, .bardislike button:hover {
-    background-color: #0056b3;
-}
-}
 
 /*Connection et inscription*/
 @media screen and (max-width: 800px){
@@ -595,6 +382,44 @@ a{
     border: none;
     color: blue;
 }
+
+.form-section.active {
+    display: block;
+    border: 2px solid;
+  }
+  
+  .form-section{
+    display: none;
+    border: 2px solid;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 16px;
+  }
+  
+  
+  
+  .logbtn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Ajoute un espacement entre les boutons */
+    margin-top: 10px; /* Ajoute un espacement en haut des boutons */
+  }
+  .logbtn button{
+    border-radius: 20px;
+    width: 100%;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+  }
+  .logbtn .first{
+    display: inline-block;
+    color: rgb(0, 0, 0);
+  }
+  .formulaire button{
+    border-radius: 20px;
+    width: 100%;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+  }
 
 /*input file image*/
 .image{
